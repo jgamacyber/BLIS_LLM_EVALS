@@ -1,0 +1,422 @@
+[
+  {
+    "id": "c01",
+    "contexto_id": "rag",
+    "pergunta": "Quem publicou o artigo original do RAG e em que ano?",
+    "contexto": "O artigo Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University. O RAG combina uma memória paramétrica, um modelo seq2seq pré-treinado, com uma memória não paramétrica, um índice vetorial denso da Wikipédia. O recuperador é o DPR e o gerador é o BART-large, com 400 milhões de parâmetros. O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira. O RAG-Token permite que cada token gerado use um documento diferente. Cada artigo da Wikipédia é dividido em blocos disjuntos de 100 palavras, resultando em 21 milhões de documentos. O índice é construído com FAISS usando uma aproximação HNSW.",
+    "resposta": "O artigo foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University.",
+    "gabarito": "2020",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c02",
+    "contexto_id": "rag",
+    "pergunta": "Qual a diferença entre RAG-Sequence e RAG-Token?",
+    "contexto": "O artigo Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University. O RAG combina uma memória paramétrica, um modelo seq2seq pré-treinado, com uma memória não paramétrica, um índice vetorial denso da Wikipédia. O recuperador é o DPR e o gerador é o BART-large, com 400 milhões de parâmetros. O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira. O RAG-Token permite que cada token gerado use um documento diferente. Cada artigo da Wikipédia é dividido em blocos disjuntos de 100 palavras, resultando em 21 milhões de documentos. O índice é construído com FAISS usando uma aproximação HNSW.",
+    "resposta": "O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira, enquanto o RAG-Token permite que cada token gerado use um documento diferente.",
+    "gabarito": "RAG-Sequence usa o mesmo documento; RAG-Token permite documento diferente por token",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c03",
+    "contexto_id": "dpr",
+    "pergunta": "Qual a acurácia top-5 do DPR comparada à do BM25?",
+    "contexto": "O DPR usa uma arquitetura de bi-encoder: um codificador de passagens e um codificador de consultas, ambos redes BERT-base independentes, usando a representação do token CLS, com dimensão 768. A similaridade entre pergunta e passagem é o produto interno dos dois vetores. A técnica de negativos no lote reaproveita o cálculo: com B perguntas no lote, a matriz de similaridade B por B fornece B ao quadrado pares de treinamento. O DPR supera um sistema Lucene-BM25 forte por 9 a 19 pontos percentuais absolutos em acurácia de recuperação top-20. Em acurácia top-5, o DPR atinge 65,2% contra 42,9% do BM25.",
+    "resposta": "Em acurácia top-5, o DPR atinge 65,2% contra 42,9% do BM25.",
+    "gabarito": "65,2% contra 42,9%",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c04",
+    "contexto_id": "hyde",
+    "pergunta": "Como o HyDE constrói o vetor final da consulta?",
+    "contexto": "O HyDE foi publicado em 2022 por Luyu Gao, Xueguang Ma, Jimmy Lin e Jamie Callan, da Carnegie Mellon University e da University of Waterloo. A consulta é enviada ao modelo generativo com a instrução de escrever um documento que responda à pergunta. O documento gerado não precisa ser verdadeiro. O codificador funciona como um compressor com perdas: ao projetar o texto em um vetor denso, os detalhes alucinados são filtrados. Os autores amostram N documentos hipotéticos e fazem a média dos embeddings, considerando também a própria consulta como hipótese. O vetor final é a média de N mais 1 vetores. As gerações usam temperatura 0,7.",
+    "resposta": "O HyDE amostra N documentos hipotéticos, faz a média dos embeddings e inclui também a própria consulta como hipótese. O vetor final é a média de N mais 1 vetores.",
+    "gabarito": "média de N+1 vetores",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c05",
+    "contexto_id": "selfrag",
+    "pergunta": "Quais são os quatro tokens de reflexão do Self-RAG?",
+    "contexto": "O Self-RAG foi publicado em 2023 por Akari Asai e coautores da University of Washington, Allen Institute for AI e IBM Research AI. São quatro tipos de tokens de reflexão. O token Retrieve decide quando recuperar, com valores yes, no ou continue. O token IsREL avalia se a passagem recuperada fornece informação útil, com valores relevant ou irrelevant. O token IsSUP verifica se as afirmações da saída são sustentadas pela passagem, com valores fully supported, partially supported ou no support. O token IsUSE avalia a utilidade da resposta em uma escala de 1 a 5. O Self-RAG com 7 e 13 bilhões de parâmetros supera modelos maiores.",
+    "resposta": "Os quatro tokens de reflexão são Retrieve, IsREL, IsSUP e IsUSE.",
+    "gabarito": "Retrieve, IsREL, IsSUP, IsUSE",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c06",
+    "contexto_id": "raptor",
+    "pergunta": "Que algoritmo de clusterização o RAPTOR usa?",
+    "contexto": "O RAPTOR foi publicado no ICLR 2024 por Parth Sarthi e coautores da Stanford University. A construção começa segmentando o corpus em textos contíguos de comprimento 100. Se uma frase excede o limite, a frase inteira é movida para o próximo chunk. Os chunks são embeddados com SBERT. O algoritmo usa Gaussian Mixture Models com clusterização suave, aplicando antes o UMAP para redução de dimensionalidade. O número ótimo de clusters é determinado pelo Critério de Informação Bayesiano. Há duas estratégias de consulta: travessia da árvore e árvore colapsada. Acoplado ao GPT-4, melhora em 20 pontos percentuais o desempenho no benchmark QuALITY.",
+    "resposta": "O RAPTOR usa Gaussian Mixture Models com clusterização suave, aplicando antes o UMAP para redução de dimensionalidade. O número de clusters é determinado pelo Critério de Informação Bayesiano.",
+    "gabarito": "Gaussian Mixture Models com UMAP e BIC",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c07",
+    "contexto_id": "beir",
+    "pergunta": "Quantos conjuntos de dados o BEIR reúne?",
+    "contexto": "O BEIR foi publicado em 2021 por Nandan Thakur e coautores do laboratório UKP-TUDA da Technische Universität Darmstadt. Reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação. O resultado mais citado é que o BM25 é um baseline robusto para recuperação zero-shot. Modelos de reranking e de interação tardia alcançam, em média, o melhor desempenho zero-shot, mas a um custo computacional alto. A métrica principal reportada no BEIR é o nDCG@10.",
+    "resposta": "O BEIR reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação.",
+    "gabarito": "18 conjuntos, 9 tarefas",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c08",
+    "contexto_id": "mteb",
+    "pergunta": "Quantas tarefas e idiomas o MTEB abrange?",
+    "contexto": "O MTEB foi publicado em 2023 por Niklas Muennighoff e coautores da Hugging Face e da Cohere. Abrange 8 tarefas de embedding, cobrindo 58 conjuntos de dados e 112 idiomas. Foram avaliados 33 modelos. O achado central é que nenhum método específico de embedding de texto domina em todas as tarefas.",
+    "resposta": "O MTEB abrange 8 tarefas de embedding, cobrindo 58 conjuntos de dados e 112 idiomas.",
+    "gabarito": "8 tarefas, 58 conjuntos, 112 idiomas",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c09",
+    "contexto_id": "rag",
+    "pergunta": "Quantos parâmetros tem o gerador usado no RAG?",
+    "contexto": "O artigo Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University. O RAG combina uma memória paramétrica, um modelo seq2seq pré-treinado, com uma memória não paramétrica, um índice vetorial denso da Wikipédia. O recuperador é o DPR e o gerador é o BART-large, com 400 milhões de parâmetros. O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira. O RAG-Token permite que cada token gerado use um documento diferente. Cada artigo da Wikipédia é dividido em blocos disjuntos de 100 palavras, resultando em 21 milhões de documentos. O índice é construído com FAISS usando uma aproximação HNSW.",
+    "resposta": "O gerador é o BART-large, com 400 milhões de parâmetros, e foi treinado durante 3 semanas em 64 GPUs V100 a um custo de aproximadamente 200 mil dólares.",
+    "gabarito": "400 milhões",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 2
+    }
+  },
+  {
+    "id": "c10",
+    "contexto_id": "dpr",
+    "pergunta": "Qual a dimensão dos vetores do DPR?",
+    "contexto": "O DPR usa uma arquitetura de bi-encoder: um codificador de passagens e um codificador de consultas, ambos redes BERT-base independentes, usando a representação do token CLS, com dimensão 768. A similaridade entre pergunta e passagem é o produto interno dos dois vetores. A técnica de negativos no lote reaproveita o cálculo: com B perguntas no lote, a matriz de similaridade B por B fornece B ao quadrado pares de treinamento. O DPR supera um sistema Lucene-BM25 forte por 9 a 19 pontos percentuais absolutos em acurácia de recuperação top-20. Em acurácia top-5, o DPR atinge 65,2% contra 42,9% do BM25.",
+    "resposta": "Os vetores do DPR têm dimensão 768, e o modelo foi treinado com taxa de aprendizado de 2e-5 por 40 épocas no dataset Natural Questions.",
+    "gabarito": "768",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 2
+    }
+  },
+  {
+    "id": "c11",
+    "contexto_id": "lim",
+    "pergunta": "O que é a curva em U do Lost in the Middle?",
+    "contexto": "O artigo Lost in the Middle foi publicado em 2023 por Nelson F. Liu e coautores de Stanford, Berkeley e Samaya AI. O resultado central é uma curva de desempenho em formato de U. O desempenho é mais alto quando a informação relevante está no começo do contexto, viés de primazia, ou no final, viés de recência, e degrada quando o modelo precisa acessar informação no meio. Usar 50 documentos em vez de 20 melhora apenas cerca de 1,5% no GPT-3.5-Turbo e cerca de 1% no Claude-1.3. Com 20 documentos, quando a passagem com a resposta está no meio, o desempenho do GPT-3.5-Turbo fica abaixo do cenário closed-book, de 56,1%.",
+    "resposta": "A curva em U mostra que o desempenho é mais alto quando a informação está no começo ou no fim do contexto. Esse efeito foi comprovado também no GPT-4 e no Gemini, que apresentaram quedas de 30% no meio do contexto.",
+    "gabarito": "desempenho alto nas bordas, baixo no meio",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 2
+    }
+  },
+  {
+    "id": "c12",
+    "contexto_id": "hyde",
+    "pergunta": "Qual temperatura o HyDE usa nas gerações?",
+    "contexto": "O HyDE foi publicado em 2022 por Luyu Gao, Xueguang Ma, Jimmy Lin e Jamie Callan, da Carnegie Mellon University e da University of Waterloo. A consulta é enviada ao modelo generativo com a instrução de escrever um documento que responda à pergunta. O documento gerado não precisa ser verdadeiro. O codificador funciona como um compressor com perdas: ao projetar o texto em um vetor denso, os detalhes alucinados são filtrados. Os autores amostram N documentos hipotéticos e fazem a média dos embeddings, considerando também a própria consulta como hipótese. O vetor final é a média de N mais 1 vetores. As gerações usam temperatura 0,7.",
+    "resposta": "O HyDE usa temperatura 0,7 nas gerações, valor que os autores escolheram após um estudo de ablação testando 0,3, 0,5, 0,7 e 0,9.",
+    "gabarito": "0,7",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 2
+    }
+  },
+  {
+    "id": "c13",
+    "contexto_id": "rag",
+    "pergunta": "Em quantas palavras o RAG divide os artigos da Wikipédia?",
+    "contexto": "O artigo Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University. O RAG combina uma memória paramétrica, um modelo seq2seq pré-treinado, com uma memória não paramétrica, um índice vetorial denso da Wikipédia. O recuperador é o DPR e o gerador é o BART-large, com 400 milhões de parâmetros. O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira. O RAG-Token permite que cada token gerado use um documento diferente. Cada artigo da Wikipédia é dividido em blocos disjuntos de 100 palavras, resultando em 21 milhões de documentos. O índice é construído com FAISS usando uma aproximação HNSW.",
+    "resposta": "O RAG divide os artigos da Wikipédia em blocos de 200 palavras.",
+    "gabarito": "100 palavras",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c14",
+    "contexto_id": "dpr",
+    "pergunta": "Quanto o DPR supera o BM25 em acurácia top-20?",
+    "contexto": "O DPR usa uma arquitetura de bi-encoder: um codificador de passagens e um codificador de consultas, ambos redes BERT-base independentes, usando a representação do token CLS, com dimensão 768. A similaridade entre pergunta e passagem é o produto interno dos dois vetores. A técnica de negativos no lote reaproveita o cálculo: com B perguntas no lote, a matriz de similaridade B por B fornece B ao quadrado pares de treinamento. O DPR supera um sistema Lucene-BM25 forte por 9 a 19 pontos percentuais absolutos em acurácia de recuperação top-20. Em acurácia top-5, o DPR atinge 65,2% contra 42,9% do BM25.",
+    "resposta": "O DPR supera o BM25 em cerca de 30 pontos percentuais em acurácia top-20.",
+    "gabarito": "9 a 19 pontos percentuais",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c15",
+    "contexto_id": "selfrag",
+    "pergunta": "Quais valores o token Retrieve pode assumir?",
+    "contexto": "O Self-RAG foi publicado em 2023 por Akari Asai e coautores da University of Washington, Allen Institute for AI e IBM Research AI. São quatro tipos de tokens de reflexão. O token Retrieve decide quando recuperar, com valores yes, no ou continue. O token IsREL avalia se a passagem recuperada fornece informação útil, com valores relevant ou irrelevant. O token IsSUP verifica se as afirmações da saída são sustentadas pela passagem, com valores fully supported, partially supported ou no support. O token IsUSE avalia a utilidade da resposta em uma escala de 1 a 5. O Self-RAG com 7 e 13 bilhões de parâmetros supera modelos maiores.",
+    "resposta": "O token Retrieve pode assumir os valores relevant e irrelevant.",
+    "gabarito": "yes, no, continue",
+    "anotacao_humana": {
+      "fundamentacao": 0,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c16",
+    "contexto_id": "rag",
+    "pergunta": "Qual biblioteca o RAG usa para o índice vetorial?",
+    "contexto": "O artigo Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks foi publicado em 2020 por Patrick Lewis e coautores do Facebook AI Research, University College London e New York University. O RAG combina uma memória paramétrica, um modelo seq2seq pré-treinado, com uma memória não paramétrica, um índice vetorial denso da Wikipédia. O recuperador é o DPR e o gerador é o BART-large, com 400 milhões de parâmetros. O RAG-Sequence usa o mesmo documento recuperado para gerar a sequência inteira. O RAG-Token permite que cada token gerado use um documento diferente. Cada artigo da Wikipédia é dividido em blocos disjuntos de 100 palavras, resultando em 21 milhões de documentos. O índice é construído com FAISS usando uma aproximação HNSW.",
+    "resposta": "O RAG é uma arquitetura que combina memória paramétrica e não paramétrica para tarefas intensivas em conhecimento, publicada em 2020.",
+    "gabarito": "FAISS",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 0,
+      "contexto_relevante": 1,
+      "nota_global": 2
+    }
+  },
+  {
+    "id": "c17",
+    "contexto_id": "dpr",
+    "pergunta": "O que são negativos no lote no DPR?",
+    "contexto": "O DPR usa uma arquitetura de bi-encoder: um codificador de passagens e um codificador de consultas, ambos redes BERT-base independentes, usando a representação do token CLS, com dimensão 768. A similaridade entre pergunta e passagem é o produto interno dos dois vetores. A técnica de negativos no lote reaproveita o cálculo: com B perguntas no lote, a matriz de similaridade B por B fornece B ao quadrado pares de treinamento. O DPR supera um sistema Lucene-BM25 forte por 9 a 19 pontos percentuais absolutos em acurácia de recuperação top-20. Em acurácia top-5, o DPR atinge 65,2% contra 42,9% do BM25.",
+    "resposta": "O DPR usa uma arquitetura de bi-encoder com duas redes BERT-base independentes e dimensão 768.",
+    "gabarito": "reaproveitar positivos de outras perguntas do lote como negativos",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 0,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c18",
+    "contexto_id": "lim",
+    "pergunta": "Quanto melhora ao usar 50 documentos em vez de 20?",
+    "contexto": "O artigo Lost in the Middle foi publicado em 2023 por Nelson F. Liu e coautores de Stanford, Berkeley e Samaya AI. O resultado central é uma curva de desempenho em formato de U. O desempenho é mais alto quando a informação relevante está no começo do contexto, viés de primazia, ou no final, viés de recência, e degrada quando o modelo precisa acessar informação no meio. Usar 50 documentos em vez de 20 melhora apenas cerca de 1,5% no GPT-3.5-Turbo e cerca de 1% no Claude-1.3. Com 20 documentos, quando a passagem com a resposta está no meio, o desempenho do GPT-3.5-Turbo fica abaixo do cenário closed-book, de 56,1%.",
+    "resposta": "O artigo Lost in the Middle analisa como os modelos de linguagem usam contextos longos e foi publicado em 2023 por pesquisadores de Stanford.",
+    "gabarito": "cerca de 1,5% no GPT-3.5",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 0,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c19",
+    "contexto_id": "beir",
+    "pergunta": "Qual a conclusão do BEIR sobre o BM25?",
+    "contexto": "O BEIR foi publicado em 2021 por Nandan Thakur e coautores do laboratório UKP-TUDA da Technische Universität Darmstadt. Reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação. O resultado mais citado é que o BM25 é um baseline robusto para recuperação zero-shot. Modelos de reranking e de interação tardia alcançam, em média, o melhor desempenho zero-shot, mas a um custo computacional alto. A métrica principal reportada no BEIR é o nDCG@10.",
+    "resposta": "Essa é uma pergunta muito interessante e relevante para quem trabalha com recuperação de informação. Vou explicar com cuidado. O benchmark BEIR, publicado em 2021 pelo laboratório UKP-TUDA da Technische Universität Darmstadt, reuniu um conjunto bastante diverso de tarefas. Após uma análise extensa, o resultado mais citado e discutido na comunidade é que o BM25 se mostra um baseline notavelmente robusto para recuperação em cenário zero-shot, o que surpreendeu muita gente na época. Espero que isso esclareça sua dúvida.",
+    "gabarito": "BM25 é um baseline robusto em zero-shot",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 4
+    }
+  },
+  {
+    "id": "c20",
+    "contexto_id": "mteb",
+    "pergunta": "Qual o achado central do MTEB?",
+    "contexto": "O MTEB foi publicado em 2023 por Niklas Muennighoff e coautores da Hugging Face e da Cohere. Abrange 8 tarefas de embedding, cobrindo 58 conjuntos de dados e 112 idiomas. Foram avaliados 33 modelos. O achado central é que nenhum método específico de embedding de texto domina em todas as tarefas.",
+    "resposta": "Deixe-me elaborar sobre esse ponto, que considero fundamental. O MTEB, desenvolvido pela Hugging Face em parceria com a Cohere, avaliou nada menos que 33 modelos diferentes ao longo de 8 tarefas distintas de embedding. E o achado central, que vale muito destacar, é que nenhum método específico de embedding de texto domina em todas as tarefas avaliadas. Isso tem implicações práticas importantes.",
+    "gabarito": "nenhum método domina em todas as tarefas",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 4
+    }
+  },
+  {
+    "id": "c21",
+    "contexto_id": "beir",
+    "pergunta": "Qual a métrica principal do BEIR?",
+    "contexto": "O BEIR foi publicado em 2021 por Nandan Thakur e coautores do laboratório UKP-TUDA da Technische Universität Darmstadt. Reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação. O resultado mais citado é que o BM25 é um baseline robusto para recuperação zero-shot. Modelos de reranking e de interação tardia alcançam, em média, o melhor desempenho zero-shot, mas a um custo computacional alto. A métrica principal reportada no BEIR é o nDCG@10.",
+    "resposta": "nDCG@10.",
+    "gabarito": "nDCG@10",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c22",
+    "contexto_id": "raptor",
+    "pergunta": "Quais as duas estratégias de consulta do RAPTOR?",
+    "contexto": "O RAPTOR foi publicado no ICLR 2024 por Parth Sarthi e coautores da Stanford University. A construção começa segmentando o corpus em textos contíguos de comprimento 100. Se uma frase excede o limite, a frase inteira é movida para o próximo chunk. Os chunks são embeddados com SBERT. O algoritmo usa Gaussian Mixture Models com clusterização suave, aplicando antes o UMAP para redução de dimensionalidade. O número ótimo de clusters é determinado pelo Critério de Informação Bayesiano. Há duas estratégias de consulta: travessia da árvore e árvore colapsada. Acoplado ao GPT-4, melhora em 20 pontos percentuais o desempenho no benchmark QuALITY.",
+    "resposta": "Travessia da árvore e árvore colapsada.",
+    "gabarito": "travessia da árvore e árvore colapsada",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c23",
+    "contexto_id": "mteb",
+    "pergunta": "Qual foi o custo computacional total para rodar o MTEB?",
+    "contexto": "O MTEB foi publicado em 2023 por Niklas Muennighoff e coautores da Hugging Face e da Cohere. Abrange 8 tarefas de embedding, cobrindo 58 conjuntos de dados e 112 idiomas. Foram avaliados 33 modelos. O achado central é que nenhum método específico de embedding de texto domina em todas as tarefas.",
+    "resposta": "O contexto fornecido não contém informação suficiente para responder.",
+    "gabarito": "",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 0,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c24",
+    "contexto_id": "beir",
+    "pergunta": "Quem financiou a pesquisa do BEIR?",
+    "contexto": "O BEIR foi publicado em 2021 por Nandan Thakur e coautores do laboratório UKP-TUDA da Technische Universität Darmstadt. Reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação. O resultado mais citado é que o BM25 é um baseline robusto para recuperação zero-shot. Modelos de reranking e de interação tardia alcançam, em média, o melhor desempenho zero-shot, mas a um custo computacional alto. A métrica principal reportada no BEIR é o nDCG@10.",
+    "resposta": "O contexto fornecido não contém informação suficiente para responder.",
+    "gabarito": "",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 0,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c25",
+    "contexto_id": "lim",
+    "pergunta": "Quem são os autores do Lost in the Middle?",
+    "contexto": "O artigo Lost in the Middle foi publicado em 2023 por Nelson F. Liu e coautores de Stanford, Berkeley e Samaya AI. O resultado central é uma curva de desempenho em formato de U. O desempenho é mais alto quando a informação relevante está no começo do contexto, viés de primazia, ou no final, viés de recência, e degrada quando o modelo precisa acessar informação no meio. Usar 50 documentos em vez de 20 melhora apenas cerca de 1,5% no GPT-3.5-Turbo e cerca de 1% no Claude-1.3. Com 20 documentos, quando a passagem com a resposta está no meio, o desempenho do GPT-3.5-Turbo fica abaixo do cenário closed-book, de 56,1%.",
+    "resposta": "O contexto fornecido não contém informação suficiente para responder.",
+    "gabarito": "Nelson F. Liu e coautores",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 0,
+      "contexto_relevante": 1,
+      "nota_global": 1
+    }
+  },
+  {
+    "id": "c26",
+    "contexto_id": "selfrag",
+    "pergunta": "O que o token IsSUP verifica?",
+    "contexto": "O Self-RAG foi publicado em 2023 por Akari Asai e coautores da University of Washington, Allen Institute for AI e IBM Research AI. São quatro tipos de tokens de reflexão. O token Retrieve decide quando recuperar, com valores yes, no ou continue. O token IsREL avalia se a passagem recuperada fornece informação útil, com valores relevant ou irrelevant. O token IsSUP verifica se as afirmações da saída são sustentadas pela passagem, com valores fully supported, partially supported ou no support. O token IsUSE avalia a utilidade da resposta em uma escala de 1 a 5. O Self-RAG com 7 e 13 bilhões de parâmetros supera modelos maiores.",
+    "resposta": "O IsSUP verifica se as afirmações da saída são sustentadas pela passagem.",
+    "gabarito": "se as afirmações são sustentadas; fully/partially/no support",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 4
+    }
+  },
+  {
+    "id": "c27",
+    "contexto_id": "raptor",
+    "pergunta": "Como o RAPTOR segmenta o corpus?",
+    "contexto": "O RAPTOR foi publicado no ICLR 2024 por Parth Sarthi e coautores da Stanford University. A construção começa segmentando o corpus em textos contíguos de comprimento 100. Se uma frase excede o limite, a frase inteira é movida para o próximo chunk. Os chunks são embeddados com SBERT. O algoritmo usa Gaussian Mixture Models com clusterização suave, aplicando antes o UMAP para redução de dimensionalidade. O número ótimo de clusters é determinado pelo Critério de Informação Bayesiano. Há duas estratégias de consulta: travessia da árvore e árvore colapsada. Acoplado ao GPT-4, melhora em 20 pontos percentuais o desempenho no benchmark QuALITY.",
+    "resposta": "O RAPTOR segmenta o corpus em textos contíguos de comprimento 100.",
+    "gabarito": "textos de 100 tokens, sem cortar frases",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 4
+    }
+  },
+  {
+    "id": "c28",
+    "contexto_id": "hyde",
+    "pergunta": "Por que as alucinações do HyDE não atrapalham?",
+    "contexto": "O HyDE foi publicado em 2022 por Luyu Gao, Xueguang Ma, Jimmy Lin e Jamie Callan, da Carnegie Mellon University e da University of Waterloo. A consulta é enviada ao modelo generativo com a instrução de escrever um documento que responda à pergunta. O documento gerado não precisa ser verdadeiro. O codificador funciona como um compressor com perdas: ao projetar o texto em um vetor denso, os detalhes alucinados são filtrados. Os autores amostram N documentos hipotéticos e fazem a média dos embeddings, considerando também a própria consulta como hipótese. O vetor final é a média de N mais 1 vetores. As gerações usam temperatura 0,7.",
+    "resposta": "Porque o codificador funciona como um compressor com perdas: ao projetar o texto em um vetor denso, os detalhes alucinados são filtrados.",
+    "gabarito": "o codificador filtra os detalhes alucinados",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 1,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c29",
+    "contexto_id": "mteb",
+    "pergunta": "Qual a fórmula do BM25?",
+    "contexto": "O MTEB foi publicado em 2023 por Niklas Muennighoff e coautores da Hugging Face e da Cohere. Abrange 8 tarefas de embedding, cobrindo 58 conjuntos de dados e 112 idiomas. Foram avaliados 33 modelos. O achado central é que nenhum método específico de embedding de texto domina em todas as tarefas.",
+    "resposta": "O contexto fornecido não contém informação suficiente para responder.",
+    "gabarito": "",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 0,
+      "nota_global": 5
+    }
+  },
+  {
+    "id": "c30",
+    "contexto_id": "beir",
+    "pergunta": "Como o DPR treina seus codificadores?",
+    "contexto": "O BEIR foi publicado em 2021 por Nandan Thakur e coautores do laboratório UKP-TUDA da Technische Universität Darmstadt. Reúne 18 conjuntos de dados públicos cobrindo 9 tarefas distintas de recuperação. O resultado mais citado é que o BM25 é um baseline robusto para recuperação zero-shot. Modelos de reranking e de interação tardia alcançam, em média, o melhor desempenho zero-shot, mas a um custo computacional alto. A métrica principal reportada no BEIR é o nDCG@10.",
+    "resposta": "O contexto fornecido não contém informação suficiente para responder.",
+    "gabarito": "",
+    "anotacao_humana": {
+      "fundamentacao": 1,
+      "relevancia": 1,
+      "contexto_relevante": 0,
+      "nota_global": 5
+    }
+  }
+]
