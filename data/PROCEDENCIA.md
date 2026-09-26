@@ -44,7 +44,7 @@ Compare com o que os artigos de referência fizeram de verdade:
 
 **Não permite:**
 
-- Afirmar que "o G-Eval tem Scott's π de X com humanos" — o denominador aqui não é "humanos", é uma anotação de referência única
+- Afirmar que "o G-Eval tem Scott's π de X com humanos", o denominador aqui não é "humanos", é uma anotação de referência única
 - Comparar com os números publicados nos artigos
 - Sustentar qualquer conclusão sobre qual métrica é melhor em geral
 
@@ -57,16 +57,16 @@ Os casos foram escritos para cobrir os modos de falha que as métricas precisam 
 | Tipo | Casos | Para que serve |
 |---|---|---|
 | Corretas e fundamentadas | c01–c08 | Piso de verdadeiros positivos |
-| Alucinação por adição | c09–c12 | A resposta acerta, mas acrescenta detalhes ausentes do contexto — testa `faithfulness` |
+| Alucinação por adição | c09–c12 | A resposta acerta, mas acrescenta detalhes ausentes do contexto, testa `faithfulness` |
 | Factualmente erradas | c13–c15 | Contradizem o contexto |
-| Evasivas | c16–c18 | Fundamentadas, mas não respondem — testa `answer relevance` |
+| Evasivas | c16–c18 | Fundamentadas, mas não respondem, testa `answer relevance` |
 | Verbosas e corretas | c19–c20 | Testa viés de verbosidade do juiz |
 | Concisas e corretas | c21–c22 | Contraste com as verbosas |
 | Abstenção correta | c23–c24, c29–c30 | O sistema recusa quando o contexto não cobre |
 | Abstenção indevida | c25 | O sistema recusa embora a resposta esteja no contexto |
 | Parcialmente corretas | c26–c28 | Testa crédito parcial |
 
-A distinção entre **alucinação por adição** (c09–c12) e **erro factual** (c13–c15) é deliberada: uma métrica de acerto trata as duas como falha, mas a `faithfulness` do RAGAS as separa — e a diferença importa, porque a primeira sai de um gerador bom demais e a segunda de um recuperador ruim.
+A distinção entre **alucinação por adição** (c09–c12) e **erro factual** (c13–c15) é deliberada: uma métrica de acerto trata as duas como falha, mas a `faithfulness` do RAGAS as separa e a diferença importa, porque a primeira sai de um gerador bom demais e a segunda de um recuperador ruim.
 
 ## Usar seus próprios dados
 
