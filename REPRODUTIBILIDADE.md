@@ -2,7 +2,7 @@
 
 Roteiro para reproduzir todos os resultados deste módulo na sua máquina. Cada comando traz o que esperar e quanto custa.
 
-Boa parte deste módulo roda **sem gastar nada** — a estatística toda (concordância, correlações, PPI) é aritmética local.
+Boa parte deste módulo roda **sem gastar nada**, a estatística toda (concordância, correlações, PPI) é aritmética local.
 
 ---
 
@@ -11,7 +11,7 @@ Boa parte deste módulo roda **sem gastar nada** — a estatística toda (concor
 ### Requisitos
 
 - Python **3.10 ou superior** (o código usa `X | None`)
-- Uma chave da OpenRouter: https://openrouter.ai/keys — só para a seção 5 em diante
+- Uma chave da OpenRouter: https://openrouter.ai/keys, só para a seção 5 em diante
 
 ```bash
 python --version      # deve mostrar 3.10+
@@ -34,7 +34,7 @@ JUIZ_MODEL=openai/gpt-4o-mini
 MODELO_AVALIADO=openai/gpt-4o-mini
 ```
 
-**Mantenha `JUIZ_MODEL` diferente de `MODELO_AVALIADO` sempre que possível.** O G-Eval alerta que juízes LLM preferem texto gerado por LLM; usar o mesmo modelo dos dois lados infla os resultados. O CLI avisa quando os dois coincidem — o conjunto incluído neste repositório não foi gerado por nenhum modelo, então para ele o aviso é inofensivo.
+**Mantenha `JUIZ_MODEL` diferente de `MODELO_AVALIADO` sempre que possível.** O G-Eval alerta que juízes LLM preferem texto gerado por LLM; usar o mesmo modelo dos dois lados infla os resultados. O CLI avisa quando os dois coincidem, o conjunto incluído neste repositório não foi gerado por nenhum modelo, então para ele o aviso é inofensivo.
 
 ---
 
@@ -47,7 +47,7 @@ python testes_mock.py        # 65 verificações
 
 **Esperado:** `Todos os testes passaram.` nos dois.
 
-Os testes offline conferem a estatística contra valores calculados à mão — por exemplo, que `scott_pi([1,1,1,1,0,0,0,0], [1,1,1,0,1,0,0,0])` dá exatamente 0,5. Se essa conta estiver errada, todos os números do relatório ficam errados em silêncio.
+Os testes offline conferem a estatística contra valores calculados à mão, por exemplo, que `scott_pi([1,1,1,1,0,0,0,0], [1,1,1,0,1,0,0,0])` dá exatamente 0,5. Se essa conta estiver errada, todos os números do relatório ficam errados em silêncio.
 
 Os testes com LLM simulado conferem, entre outras coisas, que a **ponderação por probabilidade do G-Eval** reproduz o valor esperado: com a distribuição {1:0,1 · 2:0,1 · 3:0,4 · 4:0,3 · 5:0,1}, o score tem que ser 3,2. É a peça do artigo mais fácil de implementar errado sem perceber.
 
@@ -71,7 +71,7 @@ Distribuição das anotações de referência:
   nota_global            média 3.57   [1:6 2:5 4:4 5:15]
 ```
 
-O desbalanceamento (77% e 87% positivos) é exatamente a situação em que a concordância bruta engana — e por isso o relatório insiste no Scott's π.
+O desbalanceamento (77% e 87% positivos) é exatamente a situação em que a concordância bruta engana, e por isso o relatório insiste no Scott's π.
 
 ```bash
 python main.py inspecionar --caso-id c09
@@ -103,7 +103,7 @@ E o alinhamento com a referência na dimensão *fundamentação*:
 | f1_tokens | 63,3% | 0,246 | 0,403 | −0,35 |
 | contains | 40,0% | **−0,222** | −0,071 | −0,40 |
 
-**O π negativo do `contains` é o achado, não um bug.** `contains` verifica se o gabarito aparece na resposta; `fundamentacao` verifica se a resposta inteira se sustenta no contexto. Nos casos c09–c12 a resposta contém o gabarito **e** informação inventada: `contains` aprova, a referência reprova. Fazer uma métrica lexical de proxy para fidelidade não só falha — inverte o sinal.
+**O π negativo do `contains` é o achado, não um bug.** `contains` verifica se o gabarito aparece na resposta; `fundamentacao` verifica se a resposta inteira se sustenta no contexto. Nos casos c09–c12 a resposta contém o gabarito **e** informação inventada: `contains` aprova, a referência reprova. Fazer uma métrica lexical de proxy para fidelidade não só falha, inverte o sinal.
 
 Esses números são **determinísticos**: reproduzem exatamente, porque nenhuma API é chamada.
 
@@ -131,7 +131,7 @@ Valor verdadeiro (média de TODAS as anotações): 0.767
 
 Três coisas para ler nessa tabela:
 
-1. **"Só juiz" é o mais estreito (0,333) e o único que erra o alvo.** Estreiteza não é acurácia. Aumentar o número de casos avaliados estreitaria ainda mais esse intervalo — e continuaria errado, porque nenhuma quantidade de dados corrige um viés sistemático.
+1. **"Só juiz" é o mais estreito (0,333) e o único que erra o alvo.** Estreiteza não é acurácia. Aumentar o número de casos avaliados estreitaria ainda mais esse intervalo e continuaria errado, porque nenhuma quantidade de dados corrige um viés sistemático.
 2. **O PPI erra por 0,009** contra 0,167 de usar só as 10 anotações. O retificador identificou que o juiz subestima em 0,302 e corrigiu.
 3. **Aqui o PPI não estreitou o intervalo** (0,662 contra 0,640). É honesto e esperado: o `f1_tokens` é um juiz ruim, então os resíduos variam muito e essa variância entra na conta. Um juiz melhor estreita. Depois de rodar a seção 6, repita com `--metrica faithfulness` e compare.
 
@@ -161,7 +161,7 @@ Com G-Eval:
 python main.py avaliar --metricas ragas geval --criterios fundamentacao relevancia
 ```
 
-**Sobre o custo do G-Eval:** se a OpenRouter devolver `logprobs` para o modelo escolhido, é 1 chamada por caso por critério. Se não devolver, o código cai no fallback por amostragem — que é o que o próprio artigo faz com o GPT-4 — e passa a custar `GEVAL_AMOSTRAS` chamadas (padrão 8). O relatório mostra qual método foi usado no campo `geval_metodo`. Se aparecer "amostragem" e você quiser economizar, reduza `GEVAL_AMOSTRAS` no `.env`.
+**Sobre o custo do G-Eval:** se a OpenRouter devolver `logprobs` para o modelo escolhido, é 1 chamada por caso por critério. Se não devolver, o código cai no fallback por amostragem, que é o que o próprio artigo faz com o GPT-4 — e passa a custar `GEVAL_AMOSTRAS` chamadas (padrão 8). O relatório mostra qual método foi usado no campo `geval_metodo`. Se aparecer "amostragem" e você quiser economizar, reduza `GEVAL_AMOSTRAS` no `.env`.
 
 ---
 
